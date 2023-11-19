@@ -47,7 +47,20 @@ namespace DemoAppDotNet7.Repository
         {
             try
             {
-                _dbContext.Set<T>().Remove(item); 
+                _dbContext.Set<T>().Remove(item);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> AddNewItem(T item)
+        {
+            try
+            {
+                await _dbContext.Set<T>().AddAsync(item);
                 return true;
             }
             catch (Exception)

@@ -1,5 +1,6 @@
 ﻿using DemoAppDotNet7.Models.Contract;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DemoAppDotNet7.Models
 {
@@ -18,6 +19,12 @@ namespace DemoAppDotNet7.Models
         public Department? Department { get; set; } // Navigation property to represent the Department relationship
         public bool IsDeleted { get; set; }
         public DateTime? DateDeleted { get; set; }
+
+        public string? ImagePath { get; set; }
+
+        //for upload only
+        [NotMapped]
+        public IFormFile? ClientFile { get; set; }
 
         public override string ToString()
         {

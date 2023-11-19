@@ -38,6 +38,9 @@
                 @Html.DisplayNameFor(model => model.Department)
             </th>
             <th>
+                Profile Image
+            </th>
+            <th>
                 Operations
             </th>
         </tr>
@@ -67,7 +70,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Department.DepartmentName)
                 </td>
-
+                <td>
+                    <img src="~/images/@item.ImagePath" style="width:48px" class="img-thumbnail" />
+                </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
@@ -81,7 +86,7 @@
     <tfoot class="bg-info text-white p-3">
         <tr>
             <td>Count of Employees :</td>
-            <td id="total-price" colspan="7">@Model.Count()</td>
+            <td id="total-price" colspan="8">@Model.Count()</td>
         </tr>
     </tfoot>
 </table>

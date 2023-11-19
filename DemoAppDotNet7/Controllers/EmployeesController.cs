@@ -5,6 +5,7 @@ using DemoAppDotNet7.Repository.Base;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace DemoAppDotNet7.Controllers
 {
@@ -15,10 +16,11 @@ namespace DemoAppDotNet7.Controllers
 
         //using unit of work and repositories patterns
         private readonly IUnitOfWork _unitOfWork;
-
-        public EmployeesController(IUnitOfWork unitOfWork)
+        private readonly IHostingEnvironment _hostingEnvironment;
+        public EmployeesController(IUnitOfWork unitOfWork, IHostingEnvironment hostingEnvironment)
         {
             _unitOfWork = unitOfWork;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         // GET: Employees
@@ -56,14 +58,27 @@ namespace DemoAppDotNet7.Controllers
         // POST: Employees/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[Bind] this attribute for custom binding between model and view 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,PhoneNumber,Email,Salary,HireDate,DepartmentId,IsDeleted,DateDeleted")] Employee employee)
+        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,PhoneNumber,Email,Salary,HireDate,DepartmentId,IsDeleted,DateDeleted,ClientFile")] Employee employee)
         {
             if (ModelState.IsValid)
             {
-                //await _unitOfWork.Employees.CreateOrUpdateOneAsync(employee.Id, employee);
-                //await _unitOfWork.CommiteChangesAsync();
+                string fileName = string.Empty;
+                if (employee.ClientFile != null)
+                {
+                    string myUpload = Path.Combine(_hostingEnvironment.WebRootPath, "images");
+                    fileName = employee.ClientFile.FileName;
+                    string fullPath = Path.Combine(myUpload, fileName);
+
+                    //save image in images folder
+                    employee.ClientFile.CopyTo(new FileStream(fullPath, FileMode.Create));
+                    //save image path in ImagePath column in employees table 
+                    employee.ImagePath = fileName;
+                }
+                await _unitOfWork.Employees.AddNewItem(employee);
+                await _unitOfWork.CommiteChangesAsync();
                 TempData["SuccessData"] = "Create Successfully";
                 return RedirectToAction(nameof(Index));
             }

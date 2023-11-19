@@ -12,5 +12,7 @@ namespace DemoAppDotNet7.Repository.Base
         Task<T> FindOneAsync(Expression<Func<T, bool>> expression);
 
         Task<bool> RemoveItemAsync(T item);
+
+        Task<bool> AddNewItem(T item);
     }
 }
