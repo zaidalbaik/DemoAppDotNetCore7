@@ -1,0 +1,86 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+.loginDiv {
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    left: 200px;
+    top: 100px;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    border-color: black;
+    border: 2px outset #000; /* Set the border properties */
+    padding: 20px; /* Optional: Add padding to the div for spacing */
+    opacity: 1;
+}
+
+
+.login-container {
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#login-button {
+    color: white;
+    background-color: darkorange; /* Dark yellow color */
+}
+
+.test4 {
+    color: red;
+}
+
+#childItem {
+    cursor: pointer;
+}
+
+#TestCLickEevent {
+    cursor: pointer;
+}
+
+#TextKeyUpevent {
+    background-color: silver;
+    color: black;
+    font-weight: bold;
+    font-size: 17px;
+    height: 200px;
+    width: 200px;
+    word-break: break-word;
+    white-space: pre-line;
+    overflow-y: auto;
+}
+
+    #TextKeyUpevent::-webkit-scrollbar {
+        width: 0; /* This will hide the scrollbar in WebKit browsers like Chrome and Safari */
+    }
+
+.circlezaid {
+    width: 40px;
+    height: 40px;
+    background-color: red; /* Set your preferred background color */
+    border-radius: 50%; /* Make it a circle by setting border-radius to 50% */
+    border: 3px solid #258cfb;   
+    display: none;
+}
