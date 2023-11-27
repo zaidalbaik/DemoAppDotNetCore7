@@ -2,6 +2,7 @@
 using DemoAppDotNet7.Models;
 using DemoAppDotNet7.Repository;
 using DemoAppDotNet7.Repository.Base;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace DemoAppDotNet7.Controllers
 {
+    [Authorize(Roles = AuthorizationRoles.AdminRole)]
     public class EmployeesController : Controller
     {
         //old
@@ -171,9 +173,9 @@ namespace DemoAppDotNet7.Controllers
             if (employee != null)
             {
                 await _unitOfWork.Employees.RemoveItemAsync(employee);
+                await _unitOfWork.CommiteChangesAsync();
             }
 
-            await _unitOfWork.CommiteChangesAsync();
             return RedirectToAction(nameof(Index));
         }
     }

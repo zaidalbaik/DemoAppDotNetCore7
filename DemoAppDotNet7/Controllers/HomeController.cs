@@ -1,9 +1,12 @@
 ﻿using DemoAppDotNet7.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace DemoAppDotNet7.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -12,7 +15,7 @@ namespace DemoAppDotNet7.Controllers
         {
             _logger = logger;
         }
-
+         
         public IActionResult Index()
         {
             return View();

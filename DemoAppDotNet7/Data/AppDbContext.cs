@@ -1,13 +1,15 @@
 ﻿using DemoAppDotNet7.Data.Config;
 using DemoAppDotNet7.Data.Interceptors;
 using DemoAppDotNet7.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Reflection;
 
 namespace DemoAppDotNet7.Data
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<IdentityUser>
     {
         //Table
         public DbSet<Department> Departments { get; set; }
@@ -30,7 +32,7 @@ namespace DemoAppDotNet7.Data
 
             //for all configurations 
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(EmployeeConfigurations).Assembly);
-             
+
             modelBuilder.HasDbFunction(
               typeof(AppDbContext).GetMethod(nameof(GetInstructorAndCourseInfoByOfficeId), new[] { typeof(int) })
             );

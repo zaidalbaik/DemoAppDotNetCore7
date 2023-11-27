@@ -1,5 +1,6 @@
 ﻿using DemoAppDotNet7.Models.Contract;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DemoAppDotNet7.Models
@@ -9,7 +10,11 @@ namespace DemoAppDotNet7.Models
         public int Id { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
+
+        [Phone, Required, Display(Name = "PhoneNumber"), StringLength(10, MinimumLength = 6)]
         public string? PhoneNumber { get; set; }
+
+        [EmailAddress, Required, Display(Name = "Email"), StringLength(100, MinimumLength = 10)]
         public string? Email { get; set; }
         public float Salary { get; set; }
         public DateTime? HireDate { get; set; }

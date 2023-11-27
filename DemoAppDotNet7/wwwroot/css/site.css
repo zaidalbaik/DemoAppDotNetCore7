@@ -84,3 +84,12 @@ body {
     border: 3px solid #258cfb;   
     display: none;
 }
+
+
+/* for test asp-for when changing name and id dor input element*/
+/*#Id ,#LastName{
+    background-color :red;
+}
+#FirstName {
+    background-color: red;
+}*/

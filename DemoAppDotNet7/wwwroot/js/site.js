@@ -354,13 +354,13 @@ $(document).ready(function () {
 
     //});
 
-    $("html").on("mousemove mousewheel", function (ev) {
-        $(".circlezaid").show().offset({
-            left: ev.pageX,
-            top: ev.pageY
-        });
+    //$("html").on("mousemove mousewheel", function (ev) {
+    //    $(".circlezaid").show().offset({
+    //        left: ev.pageX,
+    //        top: ev.pageY
+    //    });
 
-    });
+    //});
 
     $("#testScrollDiv").click(function () {
         $(window).scrollTop(0);
@@ -376,6 +376,7 @@ $(document).ready(function () {
         event.preventDefault();
 
     });
+
 
     //delay(1000) ==> for delaying
     //clone(true) ==> copy element and the events that spicialize for this element  /// clone(false) ==> copy element without events
@@ -415,6 +416,35 @@ $(document).ready(function () {
     $("div").parent().css("color,"red").end().children().css("color","blue").end()
     .css("border","3px solid #00f");
     */
+
+
+
+
+    function testAPI() {
+
+        var myRequest = new XMLHttpRequest();
+
+        myRequest.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status == 200) {
+                console.log(this.responseText);
+                console.log(myRequest);
+            }
+        }
+
+        //myRequest.open("GET", "https://localhost:7096/lib/jquery/dist/jquery.min.js", true);
+
+        myRequest.open("GET", "https://jsoneditoronline.org/#left=local.voyise&right=local.yeqodi", true);
+
+
+        myRequest.send();
+    }
+
+    $("#btnTestAPI").on("click", function () {
+        testAPI();
+    });
+
+
+
 });
 
 

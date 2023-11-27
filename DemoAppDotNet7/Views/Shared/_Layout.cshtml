@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mt-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">DemoAppDotNet7</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -34,7 +34,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="Payments" asp-controller="Home" asp-action="Index">Payments area</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">New User</a>
+                        </li>
                     </ul>
+
+                    <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
@@ -46,7 +51,7 @@
         <a class="nav-link text-white d-inline" asp-area="" asp-controller="Login" asp-action="Index">Link2</a>
 
     </div>
-    <div class="container m-0">
+    <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
+@model Employee
 
 <button id="btnCheck">Check</button>
 
@@ -130,7 +130,7 @@
 <input type="text" />
 
 <p id="TextKeyUpevent"></p>
-  
+
 
 <div class="container mt-4">
     <h2>Select Car</h2>
@@ -155,14 +155,41 @@
 
 
 <div id="testScrollDiv" class="position-fixed bg-black text-white fw-bold border-1 border-danger rounded-circle text-center" style="width:60px; padding:10px; height:60px; right:20px; bottom:70px;">Up</div>
- 
+
 
 <form id="formSubmit" class="form-check">
-    <input id="username"type="text" name="Username"/>
-    <input type="submit"/>
+    <input id="username" type="text" name="Username" />
+    <input type="submit" />
 </form>
 
+<form class="form-check">
+    <input type="checkbox" value="v1" />
+    <input type="checkbox" value="v2" />
+    <input type="checkbox" value="v3" />
+</form>
+
+<form>
+    <label for="sdd">v1</label>
+    <input id="sdd" type="radio" name="gender" value="v1" />
+     
+    <input type="radio" name="gender" value="v2" />
+     
+    <input type="radio" name="gender" value="v3" />
+</form>
+
+ 
+
+<a asp-protocol="https"
+   asp-host="localhost:7096"
+   asp-area="Payments"
+   asp-controller="Home"
+   asp-action="Index"
+   asp-route-id="1">https-localhost-Payments-Home-Index-1</a>
+
 <span id="validationText"></span>
+
+<button id="btnTestAPI">TestAPI With Cors Enalbed</button>
+ 
 @* ------------------------------------------------------------------------------------------*@
 
 
